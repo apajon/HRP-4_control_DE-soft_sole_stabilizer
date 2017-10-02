@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretcher">
+  <xacro:property name="model_width" value=".4" />
+  <xacro:property name="model_length" value="1.7" />
+  <xacro:property name="model_height" value="0.05" />
+  <xacro:property name="pi" value="3.14159265359" />
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${model_length} ${model_width} ${model_height}"/>
+      </geometry>
+      <material name="light gray">
+        <color rgba=".8 .8 .8 1"/>
+      </material>
+    </visual>
+  </link>
+  <xacro:macro name="handle" params="prefix reflect">
+    <link name="${prefix}_handle">
+      <visual>
+        <geometry>
+          <cylinder length="${model_length+0.5}" radius="${model_height/2}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+        <material name="dark gray">
+          <color rgba=".3 .3 .3 1"/>
+        </material>
+      </visual>
+    </link>
+    <joint name="base_to_${prefix}_handle" type="fixed">
+        <parent link="base_link"/>
+        <child link="${prefix}_handle"/>
+        <origin xyz="0 ${reflect*(model_width/2 + model_height/2)} ${model_height/4}" />
+    </joint>
+  </xacro:macro>
+  <xacro:handle prefix="right" reflect="1" />
+  <xacro:handle prefix="left" reflect="-1" />
+</robot>

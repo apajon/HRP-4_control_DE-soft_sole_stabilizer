@@ -1,0 +1,5 @@
+float64 CoMVelX
+float64 CoMVelY
+float64 theta_inc
+---
+bool wasSet

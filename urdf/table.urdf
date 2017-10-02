@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="table">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="1.7 .4 .05"/>
+      </geometry>
+      <material name="gray">
+        <color rgba=".6 .6 .6 1"/>
+      </material>
+    </visual>
+  </link>
+</robot>
